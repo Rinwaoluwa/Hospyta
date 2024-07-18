@@ -6,6 +6,8 @@ import theme from './src/design-system/theme/theme';
 import { WelcomScreen } from './src/screens/onboarding/WelcomeScreen';
 import SignIn from './src/screens/SignIn';
 import { PaperProvider } from 'react-native-paper';
+import SignUp from './src/screens/SignUp';
+import MainApp from './src/screens/MainApp';
 
 export default function App() {
   return (
@@ -14,7 +16,9 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <PaperProvider>
         {/* <WelcomScreen /> */}
-        <SignIn />
+        {/* <SignIn /> */}
+        {/* <SignUp /> */}
+        {/* <MainApp /> */}
       </PaperProvider>
       </ThemeProvider>
     </SafeAreaView>
