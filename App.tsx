@@ -4,13 +4,18 @@ import {FLEX} from './src/utils/constants';
 import {ThemeProvider} from '@shopify/restyle';
 import theme from './src/design-system/theme/theme';
 import { WelcomScreen } from './src/screens/onboarding/WelcomeScreen';
+import SignIn from './src/screens/SignIn';
+import { PaperProvider } from 'react-native-paper';
 
 export default function App() {
   return (
     <SafeAreaView style={FLEX}>
       <StatusBar style='light' />
       <ThemeProvider theme={theme}>
-       <WelcomScreen />
+        <PaperProvider>
+        {/* <WelcomScreen /> */}
+        <SignIn />
+      </PaperProvider>
       </ThemeProvider>
     </SafeAreaView>
   );

@@ -9,6 +9,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import Text from './Text';
+import {TextInput as RNPaperTextInput} from 'react-native-paper';
 
 interface TextInputProps extends Omit<RNTextInputProps, 'onBlur' | 'onFocus'> {
   label: string;
@@ -36,15 +37,14 @@ export const TextInput = ({
   ...props
 }: TextInputProps) => {
 
-  // const {} = useAppT
 
   return (
-    <View style={[styles.textInputContainer, props.containerStyle]}>
+    <View style={[styles.textInputContainer]}>
       <Controller
         control={props.control}
         render={({field: {onChange, onBlur, value}}) => (
-          <RNTextInput
-            mode="outlined"
+          <RNPaperTextInput
+            mode="flat"
             value={value}
             onChangeText={onChange}
             onBlur={() => (pureOnBlur ? pureOnBlur(onBlur) : onBlur())}
@@ -56,13 +56,14 @@ export const TextInput = ({
             onFocus={() => onFocus?.()}
             autoCapitalize="none"
             editable={props?.editable}
+            style={props.containerStyle}
             onPressIn={() => props.onPress?.()}
             {...props}
           />
         )}
         name={props.name}
       />
-      {error ? <Text variant="error">{error}</Text> : null}
+      {error ? <Text variant="error" marginTop='space-8'>{error}</Text> : null}
     </View>
   );
 };

@@ -14,4 +14,5 @@ export interface ButtonProps {
   backgroundColor?: Color;
   color?: Color;
   alignSelf?: "center" | "flex-end" |  "baseline" | "auto" | "flex-start" | "stretch";
+  marginTop?: string;
 }

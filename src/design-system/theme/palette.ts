@@ -11,6 +11,7 @@ export const palette = {
     grey1: '#7C8B98',
     overlay: 'rgba(0, 0, 0, 0.64)',
     'feedback-red': '#E93C3C',
+    "off-white": "#F6F8FA",
 };
 
 export type Palette = keyof typeof palette;
