@@ -1,18 +1,22 @@
-import React, {useState} from 'react';
-import {zodResolver} from '@hookform/resolvers/zod';
-import {SubmitHandler, useForm} from 'react-hook-form';
-import Box from "../design-system/components/Box";
-import {sigin, SignInFormValues, signup, SignUpFormValues} from '../utils/schema';
-import {TextInput} from '../design-system/components/TextInput';
 import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
+import React, {useState} from 'react';
+import {SubmitHandler, useForm} from 'react-hook-form';
+import {Checkbox, TextInput as RNPaperTextInput} from 'react-native-paper';
+import {zodResolver} from '@hookform/resolvers/zod';
+import Box from "../design-system/components/Box";
+import {signup, SignUpFormValues} from '../utils/schema';
+import {TextInput} from '../design-system/components/TextInput';
 import {Button} from '../design-system/components/buttons/button';
-import { getComputedWidth } from '../design-system/layouts/responsive';
+import {getComputedWidth} from '../design-system/layouts/responsive';
 import Text from '../design-system/components/Text';
 import {FLEX} from '../utils/constants';
-import {Checkbox, TextInput as RNPaperTextInput} from 'react-native-paper';
+import {useAppDispatch} from '../utils/redux/hooks';
+import {setProfile} from '../utils/redux/slices/profile';
+import { setIsAuthenticated } from '../utils/redux/slices/auth-tracker';
 
 
 function SignUp() {
+    const dispatch = useAppDispatch();
     const [isLoading, setIsLoading] = useState(false);
     const [hidePassword, setHidePassword] = useState(true);
     const [checked, setChecked] = React.useState(false);
@@ -30,15 +34,15 @@ function SignUp() {
     });
 
 
-    const onSubmit: SubmitHandler<SignInFormValues> = async (data) => {
+    const onSubmit: SubmitHandler<SignUpFormValues> = async (data) => {
         setIsLoading(true);
         try {
-        console.log(data)
-        } catch(error) {
-        console.error(error)
+            dispatch(setProfile(data));
+            dispatch(setIsAuthenticated(true));
+        } finally {
+            setIsLoading(false)
         }
 
-        setIsLoading(false)
     };
 
     return (
