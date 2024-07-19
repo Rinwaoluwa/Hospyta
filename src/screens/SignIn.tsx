@@ -6,16 +6,21 @@ import {sigin, SignInFormValues} from '../utils/schema';
 import {TextInput} from '../design-system/components/TextInput';
 import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
 import {Button} from '../design-system/components/buttons/button';
-import { getComputedWidth } from '../design-system/layouts/responsive';
+import {getComputedWidth} from '../design-system/layouts/responsive';
 import Text from '../design-system/components/Text';
 import {FLEX} from '../utils/constants';
 import {TextInput as RNPaperTextInput} from 'react-native-paper';
+import {useAppDispatch, useAppSelector} from '../utils/redux/hooks';
+import {RootState} from '../utils/redux/store';
+import { setIsAuthenticated } from '../utils/redux/slices/auth-tracker';
 
 function SignIn() {
+  const {email, password} = useAppSelector((state: RootState) => state);
+  const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
 
-  const {control, handleSubmit, formState: {errors}, setError} = useForm<SignInFormValues>({
+  const {control, handleSubmit, formState: {errors}, setError, getValues} = useForm<SignInFormValues>({
     defaultValues: {
       email: '',
       password: '',
@@ -28,13 +33,23 @@ function SignIn() {
   const onSubmit: SubmitHandler<SignInFormValues> = async (data) => {
     setIsLoading(true);
     try {
-      console.log(data)
-    } catch(error) {
-      console.error(error)
-    }
 
-    setIsLoading(false)
+      if (data.email !== email || data.password !== password) {
+        throw {name: "password", message: "Invalid email or password."}
+      };
+
+      dispatch(setIsAuthenticated(true));
+
+    } catch(error: {name: string; message: string;}) {
+      setError(error?.name, {
+        type: "custom",
+        message: error?.message,
+      });
+    } finally {
+      setIsLoading(false)
+    }
   };
+
     return (
       <Box alignItems="center" style={[FLEX, styles.root]}>
         <ScrollView>
