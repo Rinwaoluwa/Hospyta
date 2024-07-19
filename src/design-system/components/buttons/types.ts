@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {StyleProp, ViewStyle} from 'react-native';
 import {ButtonVariant} from './button.variants';
 import {Color} from '../../theme/theme';
@@ -15,4 +15,6 @@ export interface ButtonProps {
   color?: Color;
   alignSelf?: "center" | "flex-end" |  "baseline" | "auto" | "flex-start" | "stretch";
   marginTop?: string;
+  left?: ReactNode;
+  right?: ReactNode;
 }

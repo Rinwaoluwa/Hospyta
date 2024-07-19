@@ -28,10 +28,10 @@ function Card({ bgColor }: { bgColor: string }) {
             <Text color="white" variant="heading-3">
               Pending Appointment
             </Text>
-            <Text color="white" variant="heading-1">
+            <Text color="white" variant="heading-2">
               Tanvhir Ahmed
             </Text>
-            <Text color="white" variant="caption-medium">
+            <Text color="white" variant="caption-regular">
               High blood pressure
             </Text>
           </Box>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 8,
     paddingHorizontal: 10,
-    borderRadius: 100,
+    borderRadius: 30,
   },
   time: {},
   button: {},

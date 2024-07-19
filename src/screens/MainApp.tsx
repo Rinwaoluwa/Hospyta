@@ -1,7 +1,7 @@
-import { Image, ImageBackground, ScrollView, StyleSheet } from "react-native";
+import { Image, ImageBackground, Pressable, ScrollView, StyleSheet } from "react-native";
 import Box from "../design-system/components/Box";
 import Header from "../design-system/components/Header";
-import { Icon, Switch } from "react-native-paper";
+import { Icon as IconRN, Switch } from "react-native-paper";
 import Card from "../design-system/components/Card";
 import { useState } from "react";
 import Text from "../design-system/components/Text";
@@ -12,8 +12,9 @@ import {
   getComputedWidth,
 } from "../design-system/layouts/responsive";
 import CommunityFeed from "../design-system/components/CommunityFeed";
+import Icon from "../assets/svgs/icon";
 
-function MainApp() {
+function MainApp({navigation}: any) {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
   return (
@@ -23,9 +24,15 @@ function MainApp() {
           flexDirection="row"
           marginVertical="space-40"
           justifyContent="space-between"
+          gap='space-20'
         >
           <Header />
-          <Icon size={24} source="bell-outline" />
+          <Box flex={1} flexDirection='row' alignItems='center' gap='space-2'>
+            <IconRN size={25} source="bell-outline" />
+            <Pressable onPress={() => navigation.openDrawer()}>
+              <Icon size={80} name='hamburger' />
+            </Pressable>
+          </Box>
         </Box>
 
         <Card bgColor="purple" />
@@ -61,9 +68,9 @@ function MainApp() {
             borderRadius="space-20"
             gap="space-8"
           >
-            <Icon size={20} source="calendar-month-outline" />
+            <IconRN size={20} source="calendar-month-outline" />
             <Text color="black">Schedule appointment calender</Text>
-            <Icon size={20} source="arrow-right-thin" />
+            <IconRN size={20} source="arrow-right-thin" />
           </Box>
         </Box>
         {/* Community Feed */}
@@ -108,20 +115,20 @@ function MainApp() {
         </Box>
 
         {/* CTA */}
-        <Box style={styles.cta}>
+        <Box flexDirection='row' justifyContent='center'>
           <ImageBackground
             source={require("../assets/images/CTA.png")}
-            style={{ height: getComputedHeight(50, 70), borderRadius: 50}}
+            style={{ height: getComputedHeight(50, 70), borderRadius: 50, flex: 1, flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 20, paddingVertical: 10,}}
           >
-            <Box marginVertical='space-20' marginHorizontal='space-20'>
-              <Text color='white' variant="heading-1">Amartem</Text>
-              <Text color='white' variant="heading-1">2001</Text>
-              <Text color='white' variant="body-semibold">
+            <Box marginVertical='space-64' width={200}>
+              <Text color='white' variant="heading-2">Amartem</Text>
+              <Text color='white' variant="heading-2">2001</Text>
+              <Text color='white' variant="body-medium" style={{flexWrap: "wrap"}}>
                 For malaria and Fever made for both.
               </Text>
             </Box>
-            <Box>
-              <Text color='white' variant="heading-1">₦2000</Text>
+            <Box marginVertical='space-64'>
+              <Text color='white' variant="heading-2">₦2000</Text>
               <Text color='white' variant="body-semibold" style={{ textDecorationLine: 'line-through' }}>₦12000</Text>
             </Box>
           </ImageBackground>
@@ -159,7 +166,7 @@ function MainApp() {
 export default MainApp;
 
 const styles = StyleSheet.create({
-    cta: {
-        position: "relative",
-    }
+  cta: {
+    paddingHorizontal: 20,
+  }
 });

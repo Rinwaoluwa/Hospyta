@@ -16,6 +16,8 @@ export const Button = ({
   textProps,
   backgroundColor,
   color = 'white',
+  left,
+  right,
   ...props
 }: ButtonProps) => {
   const {colors} = useAppTheme();
@@ -38,14 +40,18 @@ export const Button = ({
         {loading ? (
           <ActivityIndicator color={colors[color]} />
         ) : (
-          <Text
-            variant="subtext-medium"
-            color={color}
-            style={[!!color ? {color: colors?.[color]} : {}]}
-            {...textProps}
-          >
-            {title}
-          </Text>
+          <Box style={left || right ? {flexDirection: "row", gap: 10} : {}}>
+            {left}
+            <Text
+              variant="subtext-medium"
+              color={color}
+              style={[!!color ? {color: colors?.[color]} : {}]}
+              {...textProps}
+            >
+              {title}
+            </Text>
+            {right}
+          </Box>
         )}
       </Box>
     </TouchableOpacity>

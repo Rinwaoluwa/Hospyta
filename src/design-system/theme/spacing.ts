@@ -14,5 +14,5 @@ export const spacing = {
     'space-80': 80,
     'space-96': 96,
     'space-m': 200,
-    'space-xl': 450,
+    'space-xl': 400,
 };

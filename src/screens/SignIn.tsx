@@ -13,8 +13,9 @@ import {TextInput as RNPaperTextInput} from 'react-native-paper';
 import {useAppDispatch, useAppSelector} from '../utils/redux/hooks';
 import {RootState} from '../utils/redux/store';
 import { setIsAuthenticated } from '../utils/redux/slices/auth-tracker';
+import Icon from '../assets/svgs/icon';
 
-function SignIn() {
+function SignIn({ navigation }: any) {
   const {email, password} = useAppSelector((state: RootState) => state);
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +31,7 @@ function SignIn() {
   });
 
 
-  const onSubmit: SubmitHandler<SignInFormValues> = async (data) => {
+  const onSubmit: SubmitHandler<SignInFormValues> = (data) => {
     setIsLoading(true);
     try {
 
@@ -127,12 +128,13 @@ function SignIn() {
                 backgroundColor='white'
                 variant='secondary'
                 marginTop="space-20"
+                left={<Icon name='google' />}
               />
             </Box>
 
             <Box marginTop="space-96" flexDirection="row" justifyContent="center">
               <Text>Don't have an account ? </Text>
-              <Pressable>
+              <Pressable onPress={() => navigation.navigate("SignUp")}>
                 <Text color='blue'>Register</Text>
               </Pressable>
             </Box>

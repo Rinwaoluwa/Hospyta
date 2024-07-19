@@ -21,6 +21,33 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./src/assets/fonts/Axiforma-Black.ttf",
+            "./src/assets/fonts/Axiforma-Bold.ttf",
+            "./src/assets/fonts/Axiforma-Book.ttf",
+            "./src/assets/fonts/Axiforma-Book.ttf",
+            "./src/assets/fonts/Axiforma-Heavy.ttf",
+            "./src/assets/fonts/Axiforma-Light.ttf",
+            "./src/assets/fonts/Axiforma-Medium.ttf",
+            "./src/assets/fonts/Axiforma-Regular.ttf",
+            "./src/assets/fonts/GothamPro-Bold.ttf",
+            "./src/assets/fonts/GothamPro-Black.ttf",
+            "./src/assets/fonts/GothamPro-Light.ttf",
+            "./src/assets/fonts/GothamPro-Medium.ttf",
+            "./src/assets/fonts/GothamPro.ttf",
+            "./src/assets/fonts/GothamProNarrow-Bold.ttf",
+            "./src/assets/fonts/GothamProNarrow-Medium.ttf",
+            "./src/assets/fonts/Poppins-Bold.ttf",
+            "./src/assets/fonts/Poppins-Light.ttf",
+            "./src/assets/fonts/Poppins-Medium.ttf"
+          ]
+        }
+      ]
+    ]
   }
 }
