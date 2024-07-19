@@ -1,19 +1,17 @@
 import {NavigationContainer} from '@react-navigation/native';
+import {useAppSelector} from '../utils/redux/hooks';
+import {RootState} from '../utils/redux/store';
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
-import LoadingOverlay from '../design-system/components/LoadingOverlay';
 
 const Router = () => {
-    const {authenticated, loading} = useAuth();
-    if (loading) {
-      return <LoadingOverlay />;
-    }
+    const {isAuthenticated} = useAppSelector((state: RootState) => state.authTracker);
     return (
       <NavigationContainer
         >
-          {authenticated ? <AppStack /> : <AuthStack />}
+          {isAuthenticated ? <AppStack /> : <AuthStack />}
       </NavigationContainer>
     );
   };
-  
+
   export default Router;

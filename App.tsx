@@ -1,27 +1,27 @@
-import {StatusBar} from 'expo-status-bar';
-import {SafeAreaView, StyleSheet, Text, View, Image} from 'react-native';
-import {FLEX} from './src/utils/constants';
-import {ThemeProvider} from '@shopify/restyle';
-import theme from './src/design-system/theme/theme';
-import { WelcomScreen } from './src/screens/onboarding/WelcomeScreen';
-import SignIn from './src/screens/SignIn';
-import { PaperProvider } from 'react-native-paper';
-import SignUp from './src/screens/SignUp';
-import MainApp from './src/screens/MainApp';
+import {StatusBar} from "expo-status-bar";
+import {SafeAreaView} from "react-native";
+import {PaperProvider} from "react-native-paper";
+import {ThemeProvider} from "@shopify/restyle";
+import {FLEX} from "./src/utils/constants";
+import theme from "./src/design-system/theme/theme";
+import {Providers} from "./src/utils/redux/providers";
+import {PersistGate} from "redux-persist/integration/react";
+import {persistor} from "./src/utils/redux/store";
+import Router from "./src/routes/Router";
 
 export default function App() {
   return (
     <SafeAreaView style={FLEX}>
-      <StatusBar style='light' />
-      <ThemeProvider theme={theme}>
-        <PaperProvider>
-        {/* <WelcomScreen /> */}
-        {/* <SignIn /> */}
-        {/* <SignUp /> */}
-        {/* <MainApp /> */}
-      </PaperProvider>
-      </ThemeProvider>
+      <StatusBar style="light" />
+      <Providers>
+        <PersistGate persistor={persistor}>
+          <ThemeProvider theme={theme}>
+            <PaperProvider>
+              <Router />
+            </PaperProvider>
+          </ThemeProvider>
+        </PersistGate>
+      </Providers>
     </SafeAreaView>
   );
 }
-

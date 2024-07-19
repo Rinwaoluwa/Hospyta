@@ -12,7 +12,7 @@ import Text from '../design-system/components/Text';
 import {FLEX} from '../utils/constants';
 import {useAppDispatch} from '../utils/redux/hooks';
 import {setProfile} from '../utils/redux/slices/profile';
-import { setIsAuthenticated } from '../utils/redux/slices/auth-tracker';
+import {setIsAuthenticated} from '../utils/redux/slices/auth-tracker';
 
 
 function SignUp() {
